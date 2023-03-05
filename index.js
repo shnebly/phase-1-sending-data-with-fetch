@@ -1,30 +1,33 @@
 // Add your code here
 
-function submitData(userName, userEmail){
-    fetch("http://localhost:3000/users", {
+function submitData(name, email){
+    return fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
         },
         body: JSON.stringify({
-            userName: `${userName}`,
-            userEmail: `${userEmail}`,
+            name: `${name}`,
+            email: `${email}`,
         })      
     })
     .then(resp => {
         return resp.json();
     })
     .then(data => {
-        console.log(data)
+        console.log(data);
+        document.querySelector("body").append(data.id);
     })
     .catch(error => {
         alert("Try Again");
         console.log(error.message);
+        document.querySelector("body").append(error.message);
     })
 };
 
-submitData("Shelby", "snm@gmail.com");
+submitData("Steve", "steve@steve.com");
+submitData("Sam", "sam@sam.com");
 
 
 // const formData = {
